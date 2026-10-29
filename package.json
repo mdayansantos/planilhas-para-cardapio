@@ -1,0 +1,9 @@
+{
+  "name": "planilhas-para-cardapio",
+  "version": "1.0.0",
+  "description": "Projeto para transformar planilhas em cardápios de restaurante.",
+  "private": true,
+  "dependencies": {
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  }
+}
