@@ -3,7 +3,15 @@
   "version": "1.0.0",
   "description": "Projeto para transformar planilhas em cardápios de restaurante.",
   "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
   "dependencies": {
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  },
+  "devDependencies": {
+    "vite": "^6.4.1"
   }
 }

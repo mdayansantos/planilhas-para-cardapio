@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Importe uma planilha e visualize o cardápio semanal dos restaurantes."
+    />
+    <title>Cardápio da Semana</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="hero">
+        <p class="eyebrow">PLANILHAS PARA CARDÁPIO</p>
+        <h1>O cardápio da semana,<br /><span>em um só lugar.</span></h1>
+      </header>
+
+      <section class="upload-panel" aria-labelledby="upload-title">
+        <div class="upload-copy">
+          <span class="step">01</span>
+          <div>
+            <h2 id="upload-title">Escolha uma planilha</h2>
+            <p>Excel ou CSV com restaurantes, categorias e dias nas colunas. O cardápio abrirá em outra página.</p>
+          </div>
+        </div>
+        <label class="file-button" for="file-input">Selecionar arquivo</label>
+        <input id="file-input" type="file" accept=".xlsx,.xls,.csv" />
+        <p id="file-name" class="file-name">Nenhum arquivo selecionado</p>
+      </section>
+
+      <p id="message" class="message" role="status" aria-live="polite">
+        Selecione a planilha do cardápio para começar.
+      </p>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

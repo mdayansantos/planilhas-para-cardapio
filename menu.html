@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Visualize o cardápio dos restaurantes por categoria e dia."
+    />
+    <title>Cardápio da Semana</title>
+  </head>
+  <body>
+    <main class="page">
+      <header class="menu-page-header">
+        <div>
+          <p class="eyebrow">CARDÁPIO DOS RESTAURANTES</p>
+          <h1>Cardápio semanal</h1>
+        </div>
+        <a class="file-button menu-back-link" href="./">Carregar outra planilha</a>
+      </header>
+
+      <section id="menu-section" class="menu-section" aria-labelledby="menu-title" hidden>
+        <div class="menu-heading">
+          <h2 id="menu-title">Cardápio</h2>
+          <label class="day-picker">
+            <span>Selecionar dia</span>
+            <select id="day-select" aria-label="Dia do cardápio"></select>
+          </label>
+        </div>
+        <p id="menu-summary" class="menu-summary"></p>
+        <div
+          id="menu-content"
+          class="menu-table-wrap"
+          role="region"
+          aria-label="Tabela de categorias e restaurantes"
+          tabindex="0"
+        ></div>
+      </section>
+
+      <section id="empty-state" class="empty-state" aria-labelledby="empty-title" hidden>
+        <h2 id="empty-title">Cardápio não carregado</h2>
+        <p id="empty-message" role="status"></p>
+        <a class="file-button menu-back-link" href="./">Selecionar planilha</a>
+      </section>
+    </main>
+    <script type="module" src="/src/menu.js"></script>
+  </body>
+</html>
