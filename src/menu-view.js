@@ -51,12 +51,29 @@ export function renderMenu(menuData, daySelect, menuSummary, menuContent) {
   headerRow.append(categoryHeader);
 
   if (hasRestaurants) {
-    for (const restaurant of restaurantNames) {
+    const restaurantColors = [
+      '#b52f2f',
+      '#7a4d2b',
+      '#3d7f4e',
+      '#4b577f',
+      '#d9b431',
+      '#c84b3d',
+      '#5e8d51',
+      '#8e4d77',
+    ];
+
+    restaurantNames.forEach((restaurant, index) => {
       const restaurantHeader = document.createElement('th');
       restaurantHeader.scope = 'col';
-      restaurantHeader.textContent = restaurant;
+      restaurantHeader.className = 'restaurant-header';
+
+      const badge = document.createElement('span');
+      badge.className = 'restaurant-badge';
+      badge.style.setProperty('--restaurant-bg', restaurantColors[index % restaurantColors.length]);
+      badge.textContent = restaurant;
+      restaurantHeader.append(badge);
       headerRow.append(restaurantHeader);
-    }
+    });
   } else {
     const dayHeader = document.createElement('th');
     dayHeader.scope = 'col';

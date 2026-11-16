@@ -1,7 +1,5 @@
 import * as XLSX from 'xlsx';
 
-export const MENU_STORAGE_KEY = 'weekly-menu';
-
 export function parseMenu(sheet) {
   const rows = XLSX.utils.sheet_to_json(sheet, {
     header: 1,

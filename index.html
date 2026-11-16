@@ -21,17 +21,31 @@
           <span class="step">01</span>
           <div>
             <h2 id="upload-title">Escolha uma planilha</h2>
-            <p>Excel ou CSV com restaurantes, categorias e dias nas colunas. O cardápio abrirá em outra página.</p>
+            <p>Excel ou CSV com restaurantes, categorias e dias nas colunas. Após publicar, o menu na TV será atualizado automaticamente.</p>
           </div>
         </div>
         <label class="file-button" for="file-input">Selecionar arquivo</label>
         <input id="file-input" type="file" accept=".xlsx,.xls,.csv" />
         <p id="file-name" class="file-name">Nenhum arquivo selecionado</p>
+        <div class="upload-token-field">
+          <label for="upload-token">Senha de publicação</label>
+          <input
+            id="upload-token"
+            type="password"
+            autocomplete="current-password"
+            required
+            aria-describedby="upload-token-help"
+          />
+          <small id="upload-token-help">Informe a senha configurada no servidor do cardápio.</small>
+        </div>
       </section>
 
       <p id="message" class="message" role="status" aria-live="polite">
         Selecione a planilha do cardápio para começar.
       </p>
+      <a id="menu-link" class="file-button" href="/menu.html" target="_blank" rel="noopener" hidden>
+        Abrir tela da TV
+      </a>
     </main>
     <script type="module" src="/src/main.js"></script>
   </body>

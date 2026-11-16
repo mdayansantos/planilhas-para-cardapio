@@ -1,18 +1,25 @@
 import * as XLSX from 'xlsx';
-import { parseMenu, MENU_STORAGE_KEY } from './menu-data.js';
+import { parseMenu } from './menu-data.js';
 import './style.css';
 
 const fileInput = document.querySelector('#file-input');
 const fileName = document.querySelector('#file-name');
 const message = document.querySelector('#message');
+const uploadToken = document.querySelector('#upload-token');
+const menuLink = document.querySelector('#menu-link');
 
 fileInput.addEventListener('change', async (event) => {
   const [file] = event.target.files;
   if (!file) return;
 
   fileName.textContent = file.name;
+  menuLink.hidden = true;
 
   try {
+    if (!uploadToken.value.trim()) {
+      throw new Error('Informe a senha de publicação para enviar o cardápio.');
+    }
+
     const workbook = XLSX.read(await file.arrayBuffer());
     const firstSheetName = workbook.SheetNames[0];
     if (!firstSheetName) {
@@ -20,8 +27,22 @@ fileInput.addEventListener('change', async (event) => {
     }
 
     const menuData = parseMenu(workbook.Sheets[firstSheetName]);
-    sessionStorage.setItem(MENU_STORAGE_KEY, JSON.stringify(menuData));
-    window.location.assign(new URL('menu.html', window.location.href).href);
+    const response = await fetch('/api/menu', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${uploadToken.value}`,
+      },
+      body: JSON.stringify(menuData),
+    });
+    const result = await response.json();
+    if (!response.ok) {
+      throw new Error(result.error || 'Não foi possível publicar o cardápio.');
+    }
+
+    message.textContent = 'Cardápio publicado. A tela da TV será atualizada automaticamente.';
+    message.className = 'message success';
+    menuLink.hidden = false;
   } catch (error) {
     message.textContent = error instanceof Error
       ? error.message

@@ -5,8 +5,10 @@
   "private": true,
   "scripts": {
     "dev": "vite",
+    "api": "node server.mjs --api-only",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "node server.mjs"
   },
   "dependencies": {
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
