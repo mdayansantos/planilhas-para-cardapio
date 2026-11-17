@@ -2,10 +2,11 @@
 
 O projeto oferece duas páginas independentes no mesmo servidor:
 
-- `/` — envio de planilha Excel ou CSV, protegido por senha de publicação.
+- `/` — envio de planilha Excel ou CSV e remoção do cardápio publicado, protegidos por senha de publicação.
 - `/menu.html` — tela limpa para a TV, sem controles; escolhe o dia atual e busca atualizações do servidor a cada 30 segundos.
 
 O servidor publica os dados do cardápio na rede local e os salva em `data/menu.json`. A planilha original é processada no navegador e não é salva no servidor.
+Para remover o cardápio, use o botão “Remover cardápio atual” na página `/`, informe a mesma senha de publicação e confirme. A tela da TV refletirá a remoção na próxima atualização.
 
 ## Executar em desenvolvimento
 

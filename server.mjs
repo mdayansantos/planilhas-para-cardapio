@@ -76,14 +76,29 @@ async function handleMenuApi(request, response) {
     return;
   }
 
-  if (request.method !== 'PUT') {
-    response.setHeader('Allow', 'GET, PUT');
+  if (request.method !== 'PUT' && request.method !== 'DELETE') {
+    response.setHeader('Allow', 'GET, PUT, DELETE');
     sendJson(response, 405, { error: 'Método não permitido.' });
     return;
   }
 
   if (!isAuthorized(request.headers.authorization)) {
     sendJson(response, 401, { error: 'Senha de publicação inválida.' });
+    return;
+  }
+
+  if (request.method === 'DELETE') {
+    try {
+      await unlink(menuFile);
+    } catch (error) {
+      if (error.code === 'ENOENT') {
+        sendJson(response, 404, { error: 'Ainda não há cardápio publicado para remover.' });
+        return;
+      }
+      throw error;
+    }
+
+    sendJson(response, 200, { message: 'Cardápio removido.' });
     return;
   }
 

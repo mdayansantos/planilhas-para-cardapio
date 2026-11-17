@@ -182,6 +182,20 @@ body:not(.menu-page) .page {
   background: var(--red-dark);
 }
 
+.remove-menu-button {
+  background: #7f291f;
+}
+
+.remove-menu-button:hover {
+  background: #5b1d17;
+}
+
+.remove-menu-button:disabled {
+  cursor: wait;
+  opacity: 0.7;
+  transform: none;
+}
+
 #file-input:focus-visible + .file-button {
   outline: 3px solid #d88e7e;
   outline-offset: 3px;

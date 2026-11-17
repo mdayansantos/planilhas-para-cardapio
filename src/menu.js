@@ -15,6 +15,13 @@ async function refreshMenu() {
     const response = await fetch('/api/menu', { cache: 'no-store' });
     const result = await response.json();
     if (!response.ok) {
+      if (response.status === 404) {
+        displayedMenu = undefined;
+        menuSection.hidden = true;
+        menuContent.replaceChildren();
+        showEmptyState(result.error || 'Ainda não há cardápio publicado.');
+        return;
+      }
       throw new Error(result.error || 'Não foi possível carregar o cardápio.');
     }
     if (!result || !Array.isArray(result.days) || !Array.isArray(result.categories)) {
