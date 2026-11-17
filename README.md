@@ -38,7 +38,7 @@ Gere os arquivos e inicie o servidor:
 
 ```powershell
 npm run build
-$env:MENU_UPLOAD_TOKEN = "defina-uma-senha-forte"
+$env:MENU_UPLOAD_TOKEN = "Sapore2026"
 npm start
 ```
 

@@ -1,3 +1,14 @@
+const restaurantPrices = new Map([
+  ['sabor de casa', { value: 'R$ 17,95', color: '#b64246' }],
+  ['grill express', { value: 'R$ 41,95', color: '#875c70' }],
+  ['grill a la minuta', { value: 'R$ 17,95', color: '#95694e' }],
+  ['festival de sabores', { value: 'R$ 17,95', color: '#d1a02f' }],
+  ['omelete show', { value: 'R$ 17,95', color: '#d1a02f' }],
+  ['viva leve', { value: 'R$ 12,95', color: '#69a765' }],
+  ['salada plus', { value: 'R$ 41,95', color: '#167e5a' }],
+  ['festival de massas', { value: 'R$ 17,95', color: '#b94b3f' }],
+]);
+
 export function populateDays(days, daySelect) {
   daySelect.replaceChildren();
   for (const day of days) {
@@ -96,11 +107,18 @@ export function renderMenu(menuData, daySelect, menuSummary, menuContent) {
     for (const restaurant of columns) {
       const cell = document.createElement('td');
       const dishes = categoryRow.dishes.get(restaurant) ?? [];
+      const price = hasRestaurants && normalize(categoryRow.name) === 'bebida e sobremesa'
+        ? restaurantPrices.get(normalize(restaurant))
+        : undefined;
       if (dishes.length) {
         cell.append(createDishList(dishes));
       } else {
         cell.className = 'menu-empty-cell';
-        cell.textContent = '—';
+        cell.textContent = price ? '' : '—';
+      }
+      if (price) {
+        cell.classList.add('menu-price-cell');
+        cell.append(createPriceBadge(price));
       }
       row.append(cell);
     }
@@ -119,6 +137,14 @@ export function renderMenu(menuData, daySelect, menuSummary, menuContent) {
 
   table.append(tableBody);
   menuContent.append(table);
+}
+
+function createPriceBadge(price) {
+  const badge = document.createElement('span');
+  badge.className = 'menu-price-badge';
+  badge.style.setProperty('--price-bg', price.color);
+  badge.textContent = price.value;
+  return badge;
 }
 
 function createDishList(dishes) {
